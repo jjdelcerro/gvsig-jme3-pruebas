@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--
+    
+    https://wiki.jmonkeyengine.org/jme3/maven.html
+    
+    https://wiki.jmonkeyengine.org/jme3/advanced/swing_canvas.html#extending-simpleapplication    
+    https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/jme3-examples/src/main/java/jme3test/awt/TestSafeCanvas.java    
+    
+    -->
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.gvsig</groupId>
+        <artifactId>org.gvsig.desktop</artifactId>
+        <version>2.0.260</version>
+    </parent>
+    <artifactId>org.gvsig.jme3</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+
+    <url>https://devel.gvsig.org/svn/gvsig-projects-pool/${project.artifactId}/trunk/${project.artifactId}</url>
+  
+    <distributionManagement>
+        <site>
+            <id>gvsig-repository</id>
+            <url>dav:https://devel.gvsig.org/sites/${project.artifactId}/${project.version}</url>
+        </site>
+    </distributionManagement>
+  
+    <scm>
+        <connection>scm:svn:https://devel.gvsig.org/svn/gvsig-projects-pool/${project.artifactId}/trunk/${project.artifactId}</connection>
+        <developerConnection>scm:svn:https://devel.gvsig.org/svn/gvsig-projects-pool/${project.artifactId}/trunk/${project.artifactId}</developerConnection>
+        <url>https://devel.gvsig.org/svn/gvsig-projects-pool/${project.artifactId}/trunk/${project.artifactId}</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>jjdelcerro</id>
+            <name>Joaquin Jose del Cerro</name>
+            <email>jjdelcerro@gvsig.com</email>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>gvsig-public-http-repository</id>
+            <name>gvSIG maven public HTTP repository</name>
+            <url>http://devel.gvsig.org/m2repo/j2se</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+          <id>jcenter</id>
+          <url>http://jcenter.bintray.com</url>
+        </repository>
+  
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagBase>https://devel.gvsig.org/svn/gvsig-projects-pool/${project.artifactId}/tags</tagBase>
+                    <goal>deploy</goal>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+      <jme3_g>org.jmonkeyengine</jme3_g>
+      <jme3_v>3.2.4-stable</jme3_v>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.gvsig</groupId>
+                <artifactId>org.gvsig.jme3.app.mainplugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gvsig</groupId>
+                <artifactId>org.gvsig.jme3.lib.api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gvsig</groupId>
+                <artifactId>org.gvsig.jme3.lib.impl</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gvsig</groupId>
+                <artifactId>org.gvsig.jme3.swing.api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gvsig</groupId>
+                <artifactId>org.gvsig.jme3.swing.impl</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+              <groupId>${jme3_g}</groupId>
+              <artifactId>jme3-core</artifactId>
+              <version>${jme3_v}</version>
+            </dependency>
+            <dependency>
+              <groupId>${jme3_g}</groupId>
+              <artifactId>jme3-desktop</artifactId>
+              <version>${jme3_v}</version>
+              <scope>runtime</scope>
+            </dependency>
+            <dependency>
+              <groupId>${jme3_g}</groupId>
+              <artifactId>jme3-lwjgl</artifactId>
+              <version>${jme3_v}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+      <module>org.gvsig.jme3.lib</module>
+      <module>org.gvsig.jme3.swing</module>
+      <module>org.gvsig.jme3.app</module>
+    </modules>
+
+</project>
